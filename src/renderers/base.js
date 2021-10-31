@@ -112,7 +112,7 @@ export default class BaseRenderer {
           // store the frustum edges in our wireframe buffer
           this.frustumPointsToWireframe(fp);
 
-
+          // build planes for three.js frustum
           let p0 = new Plane;
           let p1 = new Plane;
           let p2 = new Plane;
@@ -129,13 +129,15 @@ export default class BaseRenderer {
           let f = new Frustum(p0, p1, p2, p3, p4, p5);
 
           let li = 0;
+          let numLightsThisCell = 0;
           scene.lights.forEach(l => {
+            // be sure to check each light, since they can intersect multiple frustums
             let p = new Vector3(l.position[0], l.position[1], l.position[2]);
             let s = new Sphere(p, l.radius);
             if(f.intersectsSphere(s)){
-              l.color[0] = 1;
-              l.color[1] = 0.1;
-              l.color[2] = 0.1;
+              // append the light to this frustum's cluster texture cell 
+              this._clusterTexture.buffer[this._clusterTexture.bufferIndex(i, 0) + numLightsThisCell] = li;
+              numLightsThisCell++;
             }
             li++;
           });
