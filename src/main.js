@@ -65,12 +65,12 @@ function render() {
   var lines = params._renderer.lines;
   var segmentColor = [1.0, 0.0, 1.0];
   //console.log(lines);
-  if (!haveDrawnLines){
-  for (let i = 0; i < lines.length; i++){
-    wireframe.addLineSegment(lines[i][0], lines[i][1], segmentColor);
-  }
-  haveDrawnLines = true;
-}
+  //if (!haveDrawnLines){
+  //  for (let i = 0; i < lines.length; i++){
+  //    wireframe.addLineSegment(lines[i][0], lines[i][1], segmentColor);
+  //  }
+  //  haveDrawnLines = true;
+  //}
   gl.disable(gl.DEPTH_TEST);
   wireframe.render(camera);
   gl.enable(gl.DEPTH_TEST);
