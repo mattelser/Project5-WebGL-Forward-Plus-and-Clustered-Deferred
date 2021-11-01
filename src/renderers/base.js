@@ -79,7 +79,7 @@ export default class BaseRenderer {
     // This will take some time. The math is nontrivial...
 
     var nearClipDist = 0.0001;
-    var farClipDist = .7;
+    var farClipDist = 1;
 
     var ivp = new Matrix4;
     ivp.fromArray(inverseViewProjection);
